@@ -5,7 +5,9 @@ import Foundation
 
 extension Collection where Element: FloatingPoint {
     public var unbiasedSampleVariance: Element {
-        assert(count > 1)
+        if count < 2 {
+            return 0
+        }
 
         let xm = mean
         let n = Element.init(count)
