@@ -11,6 +11,8 @@ extension Collection where Element: FloatingPoint {
         let n: Element = Element.init(count)
 
         if (n == 0) {
+            // We decided to be fault-tolerant on this edge case and return a
+            // neutral value.
             return 0 // TODO: hmm...
         } else {
             return sum / n
