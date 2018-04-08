@@ -1,10 +1,6 @@
 // https://en.wikipedia.org/wiki/Central_tendency
 
 extension Collection where Element: FloatingPoint {
-    public var mean: Element {
-        return arithmeticMean
-    }
-
     public var arithmeticMean: Element {
         assert(count > 0) // TODO: consider precondition?
 
@@ -17,5 +13,9 @@ extension Collection where Element: FloatingPoint {
         } else {
             return sum / n
         }
-   }
+    }
+
+    public var mean: Element {
+        return arithmeticMean
+    }
 }
