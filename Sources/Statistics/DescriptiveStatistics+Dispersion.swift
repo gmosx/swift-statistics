@@ -4,12 +4,30 @@ import Foundation
 // TODO: standard deviation (sample / population)
 
 extension Collection where Element: FloatingPoint {
-    public var unbiasedSampleVariance: Element {
+    public func biasedSampleVariance() -> Element {
+        if count < 1 {
+            return 0
+        }
+
+        let xm = mean()
+        let n = Element.init(count)
+
+        var sum: Element = 0
+
+        for x in self {
+            let deviation = x - xm
+            sum += deviation * deviation
+        }
+
+        return sum / n
+    }
+
+    public func unbiasedSampleVariance() -> Element {
         if count < 2 {
             return 0
         }
 
-        let xm = mean
+        let xm = mean()
         let n = Element.init(count)
 
         var sum: Element = 0
@@ -22,7 +40,11 @@ extension Collection where Element: FloatingPoint {
         return sum / (n - 1)
     }
 
-    public var variance: Element {
-        return unbiasedSampleVariance
+    public func variance() -> Element {
+        return unbiasedSampleVariance()
+    }
+
+    public func standardDeviation() -> Element {
+        return variance().squareRoot()
     }
 }

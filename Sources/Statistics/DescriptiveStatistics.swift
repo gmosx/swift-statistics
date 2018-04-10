@@ -2,7 +2,7 @@
 // http://reference.wolfram.com/language/guide/DescriptiveStatistics.html
 
 extension Sequence where Element: Numeric {
-    public var sum: Element {
+    public func sum() -> Element {
         return reduce(0, +)
     }
 }

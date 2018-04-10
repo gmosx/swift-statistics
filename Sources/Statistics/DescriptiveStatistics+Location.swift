@@ -1,7 +1,7 @@
 // https://en.wikipedia.org/wiki/Central_tendency
 
 extension Collection where Element: FloatingPoint {
-    public var arithmeticMean: Element {
+    public func arithmeticMean() -> Element {
         assert(count > 0) // TODO: consider precondition?
 
         let n: Element = Element.init(count)
@@ -11,11 +11,11 @@ extension Collection where Element: FloatingPoint {
             // neutral value.
             return 0 // TODO: hmm...
         } else {
-            return sum / n
+            return sum() / n
         }
     }
 
-    public var mean: Element {
-        return arithmeticMean
+    public func mean() -> Element {
+        return arithmeticMean()
     }
 }
