@@ -1,10 +1,10 @@
 import Foundation
 
-// TODO: variance (sample / population)
-// TODO: standard deviation (sample / population)
+// TODO: sample* versions are used for inference, should move them?
 
 extension Collection where Element: FloatingPoint {
-    public func biasedSampleVariance() -> Element {
+    /// Computes the population variance
+    public func populationVariance() -> Element {
         if count < 1 {
             return 0
         }
@@ -22,7 +22,8 @@ extension Collection where Element: FloatingPoint {
         return sum / n
     }
 
-    public func unbiasedSampleVariance() -> Element {
+    /// Computes the unbiased sample variance
+    public func sampleVariance() -> Element {
         if count < 2 {
             return 0
         }
@@ -40,11 +41,11 @@ extension Collection where Element: FloatingPoint {
         return sum / (n - 1)
     }
 
-    public func variance() -> Element {
-        return unbiasedSampleVariance()
+    public func populationStandardDeviation() -> Element {
+        return populationVariance().squareRoot()
     }
 
-    public func standardDeviation() -> Element {
-        return variance().squareRoot()
+    public func sampleStandardDeviation() -> Element {
+        return sampleVariance().squareRoot()
     }
 }
