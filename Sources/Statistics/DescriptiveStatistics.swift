@@ -8,7 +8,7 @@ extension Sequence where Element: Numeric {
 }
 
 extension Sequence {
-    public func sum<T: Numeric>() -> T where Element == Optional<T> {
+    public func sum<T>() -> T where T: Numeric, Element == T? {
         var sum: T = 0
 
         for value in self {
