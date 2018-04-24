@@ -6,3 +6,17 @@ extension Sequence where Element: Numeric {
         return reduce(0, +)
     }
 }
+
+extension Sequence {
+    public func sum<T: Numeric>() -> T where Element == Optional<T> {
+        var sum: T = 0
+
+        for value in self {
+            if let value = value {
+                sum += value
+            }
+        }
+
+        return sum
+    }
+}
