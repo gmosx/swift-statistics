@@ -24,17 +24,19 @@ public extension Collection {
 
         assert(windowCount > 0)
 
-        let resultCount = count
-
         var result = [T]()
-        result.reserveCapacity(resultCount)
+        result.reserveCapacity(count)
 
-        for i in 0..<resultCount {
-            if i < windowCount {
-                result.append(fill)
-            } else {
-                result.append(try transform(dropFirst(i).prefix(windowCount)))
-            }
+        let filledCount = windowCount - 1
+
+        for _ in 0..<filledCount {
+            result.append(fill)
+        }
+
+        let mappedCount = count - filledCount
+
+        for i in 0..<mappedCount {
+            result.append(try transform(dropFirst(i).prefix(windowCount)))
         }
 
         return result
@@ -46,17 +48,19 @@ public extension Collection {
 
         assert(windowCount > 0)
 
-        let resultCount = count
-
         var result = [T]()
-        result.reserveCapacity(resultCount)
+        result.reserveCapacity(count)
 
-        for i in 0..<resultCount {
-            if i < windowCount {
-                result.append(fill)
-            } else {
-                result.append(transform(dropFirst(i).prefix(windowCount)))
-            }
+        let filledCount = windowCount - 1
+
+        for _ in 0..<filledCount {
+            result.append(fill)
+        }
+
+        let mappedCount = count - filledCount
+
+        for i in 0..<mappedCount {
+            result.append(transform(dropFirst(i).prefix(windowCount)))
         }
 
         return result
