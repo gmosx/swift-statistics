@@ -19,7 +19,7 @@ public extension Collection {
     }
 
     // TODO: find a better name, ideas?
-    public func movingMapExpanded<T>(window windowCount: Int, fill: T, _ transform: (SubSequence) throws -> T) rethrows -> [T] {
+    public func movingMapPadded<T>(window windowCount: Int, pad: T, _ transform: (SubSequence) throws -> T) rethrows -> [T] {
         // TODO: optimize
 
         assert(windowCount > 0)
@@ -27,13 +27,13 @@ public extension Collection {
         var result = [T]()
         result.reserveCapacity(count)
 
-        let filledCount = windowCount - 1
+        let paddedCount = windowCount - 1
 
-        for _ in 0..<filledCount {
-            result.append(fill)
+        for _ in 0..<paddedCount {
+            result.append(pad)
         }
 
-        let mappedCount = count - filledCount
+        let mappedCount = count - paddedCount
 
         for i in 0..<mappedCount {
             result.append(try transform(dropFirst(i).prefix(windowCount)))
@@ -43,7 +43,7 @@ public extension Collection {
     }
 
     // TODO: find a better name, ideas?
-    public func movingMapExpanded<T>(window windowCount: Int, fill: T, _ transform: (SubSequence) -> T) -> [T] {
+    public func movingMapPadded<T>(window windowCount: Int, pad: T, _ transform: (SubSequence) -> T) -> [T] {
         // TODO: optimize
 
         assert(windowCount > 0)
@@ -51,13 +51,13 @@ public extension Collection {
         var result = [T]()
         result.reserveCapacity(count)
 
-        let filledCount = windowCount - 1
+        let paddedCount = windowCount - 1
 
-        for _ in 0..<filledCount {
-            result.append(fill)
+        for _ in 0..<paddedCount {
+            result.append(pad)
         }
 
-        let mappedCount = count - filledCount
+        let mappedCount = count - paddedCount
 
         for i in 0..<mappedCount {
             result.append(transform(dropFirst(i).prefix(windowCount)))
