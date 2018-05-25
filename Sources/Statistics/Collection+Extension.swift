@@ -19,7 +19,7 @@ public extension Collection {
     }
 
     // TODO: find a better name, ideas?
-    public func movingMapPadded<T>(window windowCount: Int, pad: T, _ transform: (SubSequence) throws -> T) rethrows -> [T] {
+    public func movingMap<T>(window windowCount: Int, padWith pad: T, _ transform: (SubSequence) throws -> T) rethrows -> [T] {
         // TODO: optimize
 
         assert(windowCount > 0)
@@ -43,7 +43,7 @@ public extension Collection {
     }
 
     // TODO: find a better name, ideas?
-    public func movingMapPadded<T>(window windowCount: Int, pad: T, _ transform: (SubSequence) -> T) -> [T] {
+    public func movingMap<T>(window windowCount: Int, padWith pad: T, _ transform: (SubSequence) -> T) -> [T] {
         // TODO: optimize
 
         assert(windowCount > 0)

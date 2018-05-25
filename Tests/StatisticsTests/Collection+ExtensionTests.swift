@@ -9,9 +9,9 @@ class CollectionExtensionTests: XCTestCase {
         XCTAssertEqual(a.prefix(6).movingMap(window: 5) { $0 }, [[0, 1, 2, 3, 4], [1, 2, 3, 4, 5]])
     }
 
-    func testMovingMapPadded() {
+    func testMovingMapPadWith() {
         let a: [Double] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        let mapped = a.movingMapPadded(window: 3, pad: Double.nan) { $0.reduce(0, +) }
+        let mapped = a.movingMap(window: 3, padWith: Double.nan) { $0.reduce(0, +) }
         XCTAssertEqual(mapped.count, a.count)
         XCTAssert(mapped[0].isNaN)
         XCTAssert(mapped[1].isNaN)
@@ -20,6 +20,6 @@ class CollectionExtensionTests: XCTestCase {
 
     static var allTests = [
         ("testMovingMap", testMovingMap),
-        ("testMovingMapPadded", testMovingMapPadded),
+        ("testMovingMapPadWith", testMovingMapPadWith),
     ]
 }
